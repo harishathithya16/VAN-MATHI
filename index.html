@@ -343,6 +343,27 @@
 
 <script>
 
+const modulePages = {
+    guard: 'guard-app.html',
+    control: 'control_centre.html',
+    ranger: 'ranger-dashboard.html',
+    simulator: 'simulator.html'
+};
+
+const moduleNames = {
+    guard: 'Guard App',
+    control: 'Control Centre',
+    ranger: 'Ranger Dashboard',
+    simulator: 'Field Simulator'
+};
+
+const lastSeen = {};
+
+
+// --------------------------------------------------
+// OPEN MODULE
+// --------------------------------------------------
+
 function openModule(page) {
 
     const base = window.location.origin +
@@ -355,6 +376,192 @@ function openModule(page) {
         '_blank'
     );
 }
+
+
+// --------------------------------------------------
+// UPDATE UI
+// --------------------------------------------------
+
+function updateStatus(module, connected) {
+
+    const row = document.querySelector(
+        '.module-status[data-module="' + module + '"]'
+    );
+
+    if (!row) return;
+
+    const label = row.querySelector('span');
+    const state = row.querySelector('.module-state');
+
+    if (connected) {
+
+        label.textContent = '✓ ' + moduleNames[module];
+        label.style.color = '#7cff9b';
+
+        state.textContent = 'CONNECTED';
+        state.style.color = '#7cff9b';
+
+    } else {
+
+        label.textContent = '○ ' + moduleNames[module];
+        label.style.color = '#9eaaa1';
+
+        state.textContent = 'WAITING';
+        state.style.color = '#9eaaa1';
+    }
+
+    updateOverallStatus();
+}
+
+
+// --------------------------------------------------
+// OVERALL STATUS
+// --------------------------------------------------
+
+function updateOverallStatus() {
+
+    const now = Date.now();
+    let connected = 0;
+
+    Object.keys(moduleNames).forEach(function(module) {
+
+        if (
+            lastSeen[module] &&
+            now - lastSeen[module] < 6000
+        ) {
+            connected++;
+            updateStatus(module, true);
+        } else {
+            updateStatus(module, false);
+        }
+
+    });
+
+    const message =
+        document.getElementById('systemReadyMessage');
+
+    if (connected === 4) {
+
+        message.textContent = 'ALL MODULES READY';
+        message.style.color = '#7cff9b';
+
+    } else {
+
+        message.textContent =
+            connected + ' / 4 MODULES READY';
+
+        message.style.color = '#9eaaa1';
+    }
+}
+
+
+// --------------------------------------------------
+// RECEIVE MODULE HEARTBEATS
+// --------------------------------------------------
+
+function receiveHeartbeat(data) {
+
+    if (!data || !data.module) return;
+
+    if (
+        data.status === 'online' &&
+        moduleNames[data.module]
+    ) {
+        lastSeen[data.module] = data.timestamp || Date.now();
+
+        updateStatus(data.module, true);
+        updateOverallStatus();
+    }
+
+    if (
+        data.status === 'offline' &&
+        moduleNames[data.module]
+    ) {
+        delete lastSeen[data.module];
+
+        updateStatus(data.module, false);
+        updateOverallStatus();
+    }
+}
+
+
+// --------------------------------------------------
+// LISTEN TO LOCAL STORAGE
+// --------------------------------------------------
+
+window.addEventListener('storage', function(event) {
+
+    if (!event.key) return;
+
+    if (
+        event.key.startsWith('vanmathi_presence_') &&
+        event.newValue
+    ) {
+
+        try {
+
+            const data = JSON.parse(event.newValue);
+
+            receiveHeartbeat(data);
+
+        } catch (error) {
+            console.warn(
+                'Van Mathi presence error:',
+                error
+            );
+        }
+    }
+
+});
+
+
+// --------------------------------------------------
+// CHECK EXISTING MODULES
+// --------------------------------------------------
+
+function checkExistingModules() {
+
+    Object.keys(moduleNames).forEach(function(module) {
+
+        try {
+
+            const raw = localStorage.getItem(
+                'vanmathi_presence_' + module
+            );
+
+            if (!raw) return;
+
+            const data = JSON.parse(raw);
+
+            if (
+                data.status === 'online' &&
+                Date.now() - data.timestamp < 6000
+            ) {
+
+                lastSeen[module] = data.timestamp;
+
+            }
+
+        } catch (error) {}
+    });
+
+    updateOverallStatus();
+}
+
+
+// --------------------------------------------------
+// KEEP CHECKING MODULE HEALTH
+// --------------------------------------------------
+
+setInterval(function() {
+
+    checkExistingModules();
+
+}, 2000);
+
+
+// Initial check
+checkExistingModules();
 
 </script>
 
