@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Van Mathi | System Launcher</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #13251a 0%, #07110b 55%, #030805 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+            text-align: center;
+        }
+
+        .brand {
+            font-size: 15px;
+            letter-spacing: 5px;
+            color: #7cff9b;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(48px, 8vw, 82px);
+            letter-spacing: 5px;
+            font-weight: 900;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #b8c5bc;
+        }
+
+        /* IMPORTANT NOTICE */
+
+        .notice {
+            margin: 42px auto 30px;
+            max-width: 850px;
+            padding: 28px 30px;
+            border: 2px solid #7cff9b;
+            border-radius: 16px;
+            background: rgba(124, 255, 155, 0.06);
+            box-shadow: 0 0 35px rgba(124, 255, 155, 0.08);
+        }
+
+        .notice-title {
+            font-size: clamp(25px, 4vw, 36px);
+            font-weight: 900;
+            color: #7cff9b;
+            margin-bottom: 12px;
+        }
+
+        .notice-subtitle {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .steps {
+            display: grid;
+            gap: 10px;
+            text-align: left;
+            max-width: 680px;
+            margin: auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.035);
+            color: #dce5de;
+            font-size: 15px;
+        }
+
+        .step-number {
+            min-width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #7cff9b;
+            color: #07110b;
+            font-weight: 900;
+            font-size: 13px;
+        }
+
+        .highlight {
+            color: #7cff9b;
+            font-weight: 800;
+        }
+
+        /* LAUNCH BUTTON */
+
+        .launch-button {
+            margin-top: 28px;
+            padding: 18px 38px;
+            border: none;
+            border-radius: 10px;
+            background: #7cff9b;
+            color: #06100a;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(124, 255, 155, 0.18);
+            transition: 0.2s ease;
+        }
+
+        .launch-button:hover {
+            transform: translateY(-3px);
+            background: white;
+        }
+
+        .launch-button:active {
+            transform: translateY(0);
+        }
+
+        /* MODULES */
+
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .module {
+            padding: 22px 12px;
+            border: 1px solid #29372d;
+            border-radius: 13px;
+            background: rgba(16, 27, 19, 0.8);
+        }
+
+        .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .module h2 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .module p {
+            margin: 7px 0 0;
+            color: #87958b;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* LAUNCH STATUS */
+
+        #launchStatus {
+            display: none;
+            margin: 28px auto 0;
+            max-width: 650px;
+            padding: 20px;
+            border: 1px solid #29372d;
+            border-radius: 12px;
+            background: rgba(10, 20, 13, 0.9);
+        }
+
+        #launchStatus .title {
+            color: #7cff9b;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        #launchStatus .module-line {
+            padding: 5px 0;
+            color: #dce5de;
+        }
+
+        .help {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #89958d;
+            line-height: 1.5;
+        }
+
+        .footer {
+            margin-top: 28px;
+            color: #536158;
+            font-size: 11px;
+        }
+
+        @media (max-width: 850px) {
+            .modules {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 18px;
+            }
+
+            .modules {
+                grid-template-columns: 1fr;
+            }
+
+            .notice {
+                margin-top: 28px;
+                padding: 22px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="brand">
+        FOREST INTELLIGENCE PLATFORM
+    </div>
+
+    <h1>VAN MATHI</h1>
+
+    <div class="subtitle">
+        AI-Powered Forest Monitoring & Response System
+    </div>
+
+
+    <!-- IMPORTANT INSTRUCTION -->
+
+    <div class="notice">
+
+        <div class="notice-title">
+            ⚠ BEFORE STARTING THE DEMO
+        </div>
+
+        <div class="notice-subtitle">
+            Please allow pop-ups for this website.
+        </div>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    Look for the
+                    <span class="highlight">🚫 Pop-up blocked</span>
+                    icon in your browser's address bar.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    Select
+                    <span class="highlight">
+                        "Always allow pop-ups and redirects"
+                    </span>
+                    from this site.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    Reload this page after allowing pop-ups.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    Click
+                    <span class="highlight">
+                        OPEN VAN MATHI SYSTEM
+                    </span>
+                    below.
+                </div>
+            </div>
+
+        </div>
+
+
+        <button
+            class="launch-button"
+            onclick="launchVanMathi()"
+        >
+            🚀 OPEN VAN MATHI SYSTEM
+        </button>
+
+    </div>
+
+
+    <!-- MODULE PREVIEW -->
+
+    <div class="modules">
+
+        <div class="module">
+            <div class="icon">🛡️</div>
+            <h2>Guard App</h2>
+            <p>Field operations & incident response</p>
+        </div>
+
+        <div class="module">
+            <div class="icon">🎛️</div>
+            <h2>Control Centre</h2>
+            <p>Central monitoring & coordination</p>
+        </div>
+
+        <div class="module">
+            <div class="icon">📊</div>
+            <h2>Ranger Dashboard</h2>
+            <p>Patrol intelligence & analytics</p>
+        </div>
+
+        <div class="module">
+            <div class="icon">🛰️</div>
+            <h2>Field Simulator</h2>
+            <p>Real-time event simulation</p>
+        </div>
+
+    </div>
+
+
+    <!-- LAUNCH STATUS -->
+
+    <div id="launchStatus">
+
+        <div class="title">
+            🚀 VAN MATHI SYSTEM LAUNCHING...
+        </div>
+
+        <div class="module-line">
+            ✓ Guard App
+        </div>
+
+        <div class="module-line">
+            ✓ Control Centre
+        </div>
+
+        <div class="module-line">
+            ✓ Ranger Dashboard
+        </div>
+
+        <div class="module-line">
+            ✓ Field Simulator
+        </div>
+
+        <div class="help">
+            All four modules are being opened in separate tabs.
+            If a tab does not appear, check the pop-up icon in
+            the browser address bar.
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        Van Mathi • AI-powered forest monitoring & response
+    </div>
+
+</div>
+
+
+<script>
+
+function launchVanMathi() {
+
+    const base =
+        window.location.origin +
+        window.location.pathname
+            .replace(/\/index\.html?$/i, '')
+            .replace(/\/$/, '');
+
+
+    const pages = [
+        'guard-app.html',
+        'control_centre.html',
+        'ranger-dashboard.html',
+        'simulator.html'
+    ];
+
+
+    // Show launching status immediately
+
+    document.getElementById('launchStatus').style.display = 'block';
+
+
+    // Open all four modules from the SAME user click
+
+    pages.forEach(function(page) {
+
+        window.open(
+            base + '/' + page,
+            '_blank'
+        );
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
