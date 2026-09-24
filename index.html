@@ -279,10 +279,59 @@
     </div>
 
 
-    <div class="status">
-        SYSTEM ARCHITECTURE:
-        <span>4 INTERCONNECTED MODULES</span>
+    <div class="status" id="systemStatus">
+
+    <div style="
+        font-size:16px;
+        font-weight:800;
+        letter-spacing:2px;
+        color:#7cff9b;
+        margin-bottom:18px;
+    ">
+        SYSTEM INITIALIZATION
     </div>
+
+    <div id="moduleStatusList" style="
+        max-width:600px;
+        margin:0 auto;
+        text-align:left;
+    ">
+
+        <div class="module-status" data-module="guard"
+             style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+            <span>○ Guard App</span>
+            <strong class="module-state">WAITING</strong>
+        </div>
+
+        <div class="module-status" data-module="control"
+             style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+            <span>○ Control Centre</span>
+            <strong class="module-state">WAITING</strong>
+        </div>
+
+        <div class="module-status" data-module="ranger"
+             style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+            <span>○ Ranger Dashboard</span>
+            <strong class="module-state">WAITING</strong>
+        </div>
+
+        <div class="module-status" data-module="simulator"
+             style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+            <span>○ Field Simulator</span>
+            <strong class="module-state">WAITING</strong>
+        </div>
+
+    </div>
+
+    <div id="systemReadyMessage" style="
+        margin-top:18px;
+        font-weight:800;
+        color:#9eaaa1;
+    ">
+        0 / 4 MODULES READY
+    </div>
+
+</div>
 
 
     <div class="footer">
