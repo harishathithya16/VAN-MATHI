@@ -15,7 +15,8 @@
             margin: 0;
             min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
-            background: #07110b;
+            background:
+                radial-gradient(circle at top, #13251a 0%, #07110b 55%, #030805 100%);
             color: white;
             display: flex;
             align-items: center;
@@ -25,129 +26,188 @@
 
         .container {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1050px;
             text-align: center;
         }
 
         .brand {
-            font-size: 18px;
+            font-size: 15px;
             letter-spacing: 5px;
             color: #7cff9b;
+            font-weight: 700;
             margin-bottom: 12px;
-            font-weight: bold;
         }
 
         h1 {
-            font-size: clamp(42px, 7vw, 82px);
             margin: 0;
-            letter-spacing: 4px;
-            font-weight: 800;
+            font-size: clamp(48px, 8vw, 82px);
+            letter-spacing: 5px;
+            font-weight: 900;
         }
 
         .subtitle {
-            margin-top: 12px;
+            margin-top: 10px;
             font-size: 18px;
-            color: #b9c8bd;
+            color: #b8c5bc;
         }
 
-        .warning {
-            margin: 45px auto 35px;
-            padding: 28px 25px;
-            max-width: 900px;
+        /* IMPORTANT NOTICE */
+
+        .notice {
+            margin: 42px auto 30px;
+            max-width: 850px;
+            padding: 28px 30px;
             border: 2px solid #7cff9b;
-            border-radius: 14px;
+            border-radius: 16px;
             background: rgba(124, 255, 155, 0.06);
+            box-shadow: 0 0 35px rgba(124, 255, 155, 0.08);
         }
 
-        .warning-title {
-            font-size: clamp(24px, 4vw, 38px);
-            font-weight: 800;
+        .notice-title {
+            font-size: clamp(25px, 4vw, 36px);
+            font-weight: 900;
             color: #7cff9b;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            margin-bottom: 12px;
         }
 
-        .warning-text {
+        .notice-subtitle {
+            color: #ffffff;
             font-size: 18px;
-            line-height: 1.6;
-            color: #e8eee9;
+            font-weight: 700;
+            margin-bottom: 22px;
         }
 
-        .warning-text strong {
-            color: white;
+        .steps {
+            display: grid;
+            gap: 10px;
+            text-align: left;
+            max-width: 680px;
+            margin: auto;
         }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.035);
+            color: #dce5de;
+            font-size: 15px;
+        }
+
+        .step-number {
+            min-width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #7cff9b;
+            color: #07110b;
+            font-weight: 900;
+            font-size: 13px;
+        }
+
+        .highlight {
+            color: #7cff9b;
+            font-weight: 800;
+        }
+
+        /* LAUNCH BUTTON */
+
+        .launch-button {
+            margin-top: 28px;
+            padding: 18px 38px;
+            border: none;
+            border-radius: 10px;
+            background: #7cff9b;
+            color: #06100a;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(124, 255, 155, 0.18);
+            transition: 0.2s ease;
+        }
+
+        .launch-button:hover {
+            transform: translateY(-3px);
+            background: white;
+        }
+
+        .launch-button:active {
+            transform: translateY(0);
+        }
+
+        /* MODULES */
 
         .modules {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-top: 35px;
+            gap: 15px;
+            margin-top: 40px;
         }
 
         .module {
-            background: #101b13;
-            border: 1px solid #29382c;
-            border-radius: 14px;
-            padding: 28px 15px;
-            transition: 0.2s ease;
-        }
-
-        .module:hover {
-            transform: translateY(-5px);
-            border-color: #7cff9b;
+            padding: 22px 12px;
+            border: 1px solid #29372d;
+            border-radius: 13px;
+            background: rgba(16, 27, 19, 0.8);
         }
 
         .icon {
-            font-size: 42px;
-            margin-bottom: 15px;
+            font-size: 32px;
+            margin-bottom: 10px;
         }
 
         .module h2 {
-            font-size: 18px;
-            margin: 0 0 8px;
+            margin: 0;
+            font-size: 16px;
         }
 
         .module p {
-            color: #9eaaa1;
-            font-size: 13px;
-            min-height: 38px;
-            margin-bottom: 20px;
+            margin: 7px 0 0;
+            color: #87958b;
+            font-size: 12px;
+            line-height: 1.4;
         }
 
-        button {
-            width: 100%;
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            background: #7cff9b;
-            color: #07110b;
-            font-weight: 800;
-            cursor: pointer;
-            font-size: 14px;
-        }
+        /* LAUNCH STATUS */
 
-        button:hover {
-            background: white;
-        }
-
-        .status {
-            margin-top: 40px;
+        #launchStatus {
+            display: none;
+            margin: 28px auto 0;
+            max-width: 650px;
             padding: 20px;
+            border: 1px solid #29372d;
             border-radius: 12px;
-            background: #0c160f;
-            border: 1px solid #29382c;
-            color: #aebbb1;
+            background: rgba(10, 20, 13, 0.9);
         }
 
-        .status span {
+        #launchStatus .title {
             color: #7cff9b;
-            font-weight: bold;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        #launchStatus .module-line {
+            padding: 5px 0;
+            color: #dce5de;
+        }
+
+        .help {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #89958d;
+            line-height: 1.5;
         }
 
         .footer {
-            margin-top: 25px;
-            font-size: 12px;
-            color: #647067;
+            margin-top: 28px;
+            color: #536158;
+            font-size: 11px;
         }
 
         @media (max-width: 850px) {
@@ -158,15 +218,16 @@
 
         @media (max-width: 500px) {
             body {
-                padding: 20px;
+                padding: 18px;
             }
 
             .modules {
                 grid-template-columns: 1fr;
             }
 
-            .warning {
-                margin-top: 30px;
+            .notice {
+                margin-top: 28px;
+                padding: 22px 18px;
             }
         }
     </style>
@@ -176,7 +237,9 @@
 
 <div class="container">
 
-    <div class="brand">FOREST INTELLIGENCE PLATFORM</div>
+    <div class="brand">
+        FOREST INTELLIGENCE PLATFORM
+    </div>
 
     <h1>VAN MATHI</h1>
 
@@ -185,153 +248,133 @@
     </div>
 
 
-    <div class="warning">
+    <!-- IMPORTANT INSTRUCTION -->
 
-        <div class="warning-title">
-            ⚠ Before Experiencing the System
+    <div class="notice">
+
+        <div class="notice-title">
+            ⚠ BEFORE STARTING THE DEMO
         </div>
 
-        <div class="warning-text">
-            <strong>Open all 4 modules in separate tabs first.</strong>
-            <br>
-            The modules are interconnected and exchange live
-            alerts, events, patrol updates and simulation data.
-            <br><br>
-            <strong>Open all four modules → then begin the demo.</strong>
+        <div class="notice-subtitle">
+            Please allow pop-ups for this website.
         </div>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    Look for the
+                    <span class="highlight">🚫 Pop-up blocked</span>
+                    icon in your browser's address bar.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    Select
+                    <span class="highlight">
+                        "Always allow pop-ups and redirects"
+                    </span>
+                    from this site.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    Reload this page after allowing pop-ups.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    Click
+                    <span class="highlight">
+                        OPEN VAN MATHI SYSTEM
+                    </span>
+                    below.
+                </div>
+            </div>
+
+        </div>
+
+
+        <button
+            class="launch-button"
+            onclick="launchVanMathi()"
+        >
+            🚀 OPEN VAN MATHI SYSTEM
+        </button>
 
     </div>
 
+
+    <!-- MODULE PREVIEW -->
 
     <div class="modules">
 
-        <!-- GUARD APP -->
         <div class="module">
-
             <div class="icon">🛡️</div>
-
             <h2>Guard App</h2>
-
-            <p>
-                Field operations, alerts and incident reporting.
-            </p>
-
-            <button onclick="openModule('guard-app.html')">
-                OPEN GUARD APP
-            </button>
-
+            <p>Field operations & incident response</p>
         </div>
 
-
-        <!-- CONTROL CENTRE -->
         <div class="module">
-
             <div class="icon">🎛️</div>
-
             <h2>Control Centre</h2>
-
-            <p>
-                Central monitoring and operational coordination.
-            </p>
-
-            <button onclick="openModule('control_centre.html')">
-                OPEN CONTROL CENTRE
-            </button>
-
+            <p>Central monitoring & coordination</p>
         </div>
 
-
-        <!-- RANGER DASHBOARD -->
         <div class="module">
-
             <div class="icon">📊</div>
-
             <h2>Ranger Dashboard</h2>
-
-            <p>
-                Patrol intelligence, analytics and forest insights.
-            </p>
-
-            <button onclick="openModule('ranger-dashboard.html')">
-                OPEN RANGER DASHBOARD
-            </button>
-
+            <p>Patrol intelligence & analytics</p>
         </div>
 
-
-        <!-- FIELD SIMULATOR -->
         <div class="module">
-
             <div class="icon">🛰️</div>
-
             <h2>Field Simulator</h2>
-
-            <p>
-                Simulate forest events and response scenarios.
-            </p>
-
-            <button onclick="openModule('simulator.html')">
-                OPEN FIELD SIMULATOR
-            </button>
-
+            <p>Real-time event simulation</p>
         </div>
 
     </div>
 
 
-    <div class="status" id="systemStatus">
+    <!-- LAUNCH STATUS -->
 
-    <div style="
-        font-size:16px;
-        font-weight:800;
-        letter-spacing:2px;
-        color:#7cff9b;
-        margin-bottom:18px;
-    ">
-        SYSTEM INITIALIZATION
-    </div>
+    <div id="launchStatus">
 
-    <div id="moduleStatusList" style="
-        max-width:600px;
-        margin:0 auto;
-        text-align:left;
-    ">
-
-        <div class="module-status" data-module="guard"
-             style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
-            <span>○ Guard App</span>
-            <strong class="module-state">WAITING</strong>
+        <div class="title">
+            🚀 VAN MATHI SYSTEM LAUNCHING...
         </div>
 
-        <div class="module-status" data-module="control"
-             style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
-            <span>○ Control Centre</span>
-            <strong class="module-state">WAITING</strong>
+        <div class="module-line">
+            ✓ Guard App
         </div>
 
-        <div class="module-status" data-module="ranger"
-             style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
-            <span>○ Ranger Dashboard</span>
-            <strong class="module-state">WAITING</strong>
+        <div class="module-line">
+            ✓ Control Centre
         </div>
 
-        <div class="module-status" data-module="simulator"
-             style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
-            <span>○ Field Simulator</span>
-            <strong class="module-state">WAITING</strong>
+        <div class="module-line">
+            ✓ Ranger Dashboard
+        </div>
+
+        <div class="module-line">
+            ✓ Field Simulator
+        </div>
+
+        <div class="help">
+            All four modules are being opened in separate tabs.
+            If a tab does not appear, check the pop-up icon in
+            the browser address bar.
         </div>
 
     </div>
-
-    <div id="systemReadyMessage" style="
-        margin-top:18px;
-        font-weight:800;
-        color:#9eaaa1;
-    ">
-        0 / 4 MODULES READY
-    </div>
-
-</div>
 
 
     <div class="footer">
@@ -343,225 +386,40 @@
 
 <script>
 
-const modulePages = {
-    guard: 'guard-app.html',
-    control: 'control_centre.html',
-    ranger: 'ranger-dashboard.html',
-    simulator: 'simulator.html'
-};
+function launchVanMathi() {
 
-const moduleNames = {
-    guard: 'Guard App',
-    control: 'Control Centre',
-    ranger: 'Ranger Dashboard',
-    simulator: 'Field Simulator'
-};
-
-const lastSeen = {};
+    const base =
+        window.location.origin +
+        window.location.pathname
+            .replace(/\/index\.html?$/i, '')
+            .replace(/\/$/, '');
 
 
-// --------------------------------------------------
-// OPEN MODULE
-// --------------------------------------------------
-
-function openModule(page) {
-
-    const base = window.location.origin +
-                 window.location.pathname
-                 .replace(/\/index\.html?$/i, '')
-                 .replace(/\/$/, '');
-
-    window.open(
-        base + '/' + page,
-        '_blank'
-    );
-}
+    const pages = [
+        'guard-app.html',
+        'control_centre.html',
+        'ranger-dashboard.html',
+        'simulator.html'
+    ];
 
 
-// --------------------------------------------------
-// UPDATE UI
-// --------------------------------------------------
+    // Show launching status immediately
 
-function updateStatus(module, connected) {
-
-    const row = document.querySelector(
-        '.module-status[data-module="' + module + '"]'
-    );
-
-    if (!row) return;
-
-    const label = row.querySelector('span');
-    const state = row.querySelector('.module-state');
-
-    if (connected) {
-
-        label.textContent = '✓ ' + moduleNames[module];
-        label.style.color = '#7cff9b';
-
-        state.textContent = 'CONNECTED';
-        state.style.color = '#7cff9b';
-
-    } else {
-
-        label.textContent = '○ ' + moduleNames[module];
-        label.style.color = '#9eaaa1';
-
-        state.textContent = 'WAITING';
-        state.style.color = '#9eaaa1';
-    }
-
-    updateOverallStatus();
-}
+    document.getElementById('launchStatus').style.display = 'block';
 
 
-// --------------------------------------------------
-// OVERALL STATUS
-// --------------------------------------------------
+    // Open all four modules from the SAME user click
 
-function updateOverallStatus() {
+    pages.forEach(function(page) {
 
-    const now = Date.now();
-    let connected = 0;
-
-    Object.keys(moduleNames).forEach(function(module) {
-
-        if (
-            lastSeen[module] &&
-            now - lastSeen[module] < 6000
-        ) {
-            connected++;
-            updateStatus(module, true);
-        } else {
-            updateStatus(module, false);
-        }
+        window.open(
+            base + '/' + page,
+            '_blank'
+        );
 
     });
 
-    const message =
-        document.getElementById('systemReadyMessage');
-
-    if (connected === 4) {
-
-        message.textContent = 'ALL MODULES READY';
-        message.style.color = '#7cff9b';
-
-    } else {
-
-        message.textContent =
-            connected + ' / 4 MODULES READY';
-
-        message.style.color = '#9eaaa1';
-    }
 }
-
-
-// --------------------------------------------------
-// RECEIVE MODULE HEARTBEATS
-// --------------------------------------------------
-
-function receiveHeartbeat(data) {
-
-    if (!data || !data.module) return;
-
-    if (
-        data.status === 'online' &&
-        moduleNames[data.module]
-    ) {
-        lastSeen[data.module] = data.timestamp || Date.now();
-
-        updateStatus(data.module, true);
-        updateOverallStatus();
-    }
-
-    if (
-        data.status === 'offline' &&
-        moduleNames[data.module]
-    ) {
-        delete lastSeen[data.module];
-
-        updateStatus(data.module, false);
-        updateOverallStatus();
-    }
-}
-
-
-// --------------------------------------------------
-// LISTEN TO LOCAL STORAGE
-// --------------------------------------------------
-
-window.addEventListener('storage', function(event) {
-
-    if (!event.key) return;
-
-    if (
-        event.key.startsWith('vanmathi_presence_') &&
-        event.newValue
-    ) {
-
-        try {
-
-            const data = JSON.parse(event.newValue);
-
-            receiveHeartbeat(data);
-
-        } catch (error) {
-            console.warn(
-                'Van Mathi presence error:',
-                error
-            );
-        }
-    }
-
-});
-
-
-// --------------------------------------------------
-// CHECK EXISTING MODULES
-// --------------------------------------------------
-
-function checkExistingModules() {
-
-    Object.keys(moduleNames).forEach(function(module) {
-
-        try {
-
-            const raw = localStorage.getItem(
-                'vanmathi_presence_' + module
-            );
-
-            if (!raw) return;
-
-            const data = JSON.parse(raw);
-
-            if (
-                data.status === 'online' &&
-                Date.now() - data.timestamp < 6000
-            ) {
-
-                lastSeen[module] = data.timestamp;
-
-            }
-
-        } catch (error) {}
-    });
-
-    updateOverallStatus();
-}
-
-
-// --------------------------------------------------
-// KEEP CHECKING MODULE HEALTH
-// --------------------------------------------------
-
-setInterval(function() {
-
-    checkExistingModules();
-
-}, 2000);
-
-
-// Initial check
-checkExistingModules();
 
 </script>
 
